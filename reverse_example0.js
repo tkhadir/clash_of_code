@@ -18,3 +18,8 @@ newNum.forEach((item) => {
 result = result ** 2
 
 console.log(result)
+
+
+//5 --> 25
+
+// 9 --> 12
