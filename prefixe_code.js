@@ -48,3 +48,6 @@ else {
 
     console.log((msg.length > 0 ? FAIL + index : result))
 }
+
+
+// decode 0100 ... to abracadabra for example
