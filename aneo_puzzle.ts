@@ -1,7 +1,6 @@
 const evalTime = (count:number, lduration: number, time: number): boolean => {
     if (count <= time) {
         let timeFromRed = count + lduration
-        console.error(timeFromRed)
         return (timeFromRed > time) ? false : evalTime((timeFromRed + lduration), lduration, time)
     } else return true
 }
@@ -24,13 +23,9 @@ let maxSpeed: number = speed
 let complete: boolean = false
 
 while (!complete) {
-    let speedPerSec: number = maxSpeed * 1000 / 3600
     for (let l of lights) {
 
-        let time: number = Math.round(l.distance / speedPerSec)
-        console.error('max speed is : ' + maxSpeed)
-        console.error('time : ' + time)
-        console.error('duration : ' + l.duration)
+        let time: number = (l.distance * 36) / (maxSpeed * 10)
 
         complete = evalTime(l.duration, l.duration, time)
         if (!complete) break
