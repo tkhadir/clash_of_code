@@ -1,4 +1,4 @@
-let dict: any = {}
+const dict: any = {}
 dict['A'] = '.-'
 dict['B'] = '-...'	 
 dict['C'] = '-.-.'	 
@@ -30,29 +30,35 @@ const wordToMorse = (w:string) => {
     return w.split('').map(i => dict[i]).join('')
 }
 
-const scour = (l:string, words:string[]):number => {
+const scour = (l:string, words:string[], cache:Map<string, number>):number => {
     if (l.length == 0) {
         return 1
     }
     let count = 0
-    for (const w of words) {
-        if (l.startsWith(wordToMorse(w))) {
-            count+=scour(l.replace(wordToMorse(w), ''), words)
-        }
+    const iterArr = words.filter(i => i.length <= l.length && l.startsWith(i))
+    for (const w of iterArr) {
+        let cachedw = l.replace(w, '')
+        const result = cache.has(cachedw) ? cache.get(cachedw) : scour(cachedw, words, cache)
+        if (!cache.has(cachedw)) cache.set(cachedw, result)
+        count+=result
     }
     return count
 }
 
 const analyze = (l:string, words:string[]):number => {
-    return scour(l, words)
+    return scour(l, words, new Map())
 }
 
-const L: string = readline();
-const N: number = parseInt(readline());
+const prepare = (words:string[]):string[] => {
+    return words.map(w => wordToMorse(w))
+}
+
+const L: string = readline()
+const N: number = parseInt(readline())
 let words = []
 for (let i = 0; i < N; i++) {
-    const W: string = readline();
+    const W: string = readline()
     words.push(W)
 }
-
+words = prepare(words)
 console.log(analyze(L, words))
