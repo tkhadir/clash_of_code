@@ -33,3 +33,9 @@ while(i <= parseInt(passwordFormat['maxpass'], 36)) {
     i++
 }
 console.log('start process time : ' + new Date())
+
+/*
+start process time : Tue Dec 29 2020 09:37:10 GMT+0100 (GMT+01:00)
+found : findme
+start process time : Tue Dec 29 2020 09:39:04 GMT+0100 (GMT+01:00)
+*/
