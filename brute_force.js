@@ -1,5 +1,5 @@
 const password = 'findme'
-const minLength = 7
+const minLength = 6
 const maxLength = 8
 
 const prepare = (min, max) => {
